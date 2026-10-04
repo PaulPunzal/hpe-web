@@ -1,0 +1,42 @@
+/* Design tokens: colours, type, layout and the perforation pattern. */
+:root {
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif: "Lora", Georgia, serif;
+  --font-display: "Anton", Impact, "Arial Narrow", sans-serif;
+
+  --ink: #1f3329;
+  --muted: #5f6b64;
+  --line: #e4e2d9;
+  --card: #fff;
+  --page: #e3ece7;
+
+  --hpe-green: #01a982;
+  --label-green: #2e8b65;
+  --headline-green: #14c49a;
+  --gold: #c98f1b;
+  --gold-light: #f2be55;
+
+  --teal-900: #0f2430;
+  --teal-800: #14303d;
+  --teal-700: #1d5260;
+  --teal-500: #2e7d8c;
+  --teal-gradient: linear-gradient(120deg, var(--teal-800) 0%, var(--teal-700) 55%, var(--teal-500) 100%);
+
+  --page-max: 1240px;
+  --radius: 16px;
+  --notch: 14px;
+
+  /* Perforation: thin slits of uneven length, used as mask layers on every ticket. */
+  --slit-v: repeating-linear-gradient(180deg, #000 0 10px, #0000 10px 15px, #000 15px 21px, #0000 21px 27px, #000 27px 36px, #0000 36px 40px);
+  --slit-h: repeating-linear-gradient(90deg, #000 0 10px, #0000 10px 15px, #000 15px 21px, #0000 21px 27px, #000 27px 36px, #0000 36px 40px);
+}
+
+[data-bs-theme="dark"] {
+  --ink: #eef3ef;
+  --muted: #a5b3ab;
+  --line: #2a3a31;
+  --card: #18241e;
+  --page: #0e1813;
+  --label-green: #4cc392;
+  --gold: #e5b04a;
+}

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>HPE Private Lounge – Q4 2024</title>
+  <meta name="description" content="HPE Private Lounge: fuel and wish vouchers and a chance to win an active vacation for 2. Promotion period August 1 to October 15, 2024.">
+
+  <!-- Apply the saved (or system) colour theme before first paint to avoid a flash -->
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem("hpe-theme"); } catch (e) {}
+      if (!t) t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.setAttribute("data-bs-theme", t);
+    })();
+  </script>
+
+  <!-- Bootstrap 5.3 (CSS only: grid, buttons, utilities). Local copy so the page works offline. -->
+  <link rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/tickets.css">
+  <link rel="stylesheet" href="css/offers.css">
+</head>
+<body>
+
+<!-- SVG icon sprite: icons are reused with <use href="#id"> -->
+<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M16 7l3 3M14 9l2 2"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.3"/></symbol>
+  <symbol id="i-mountain" viewBox="0 0 24 24"><path d="M3 20l6.5-11 4 6.5 2.5-3.5L21 20z"/><path d="M17.5 5.5h.01"/></symbol>
+  <symbol id="i-fuel" viewBox="0 0 24 24"><path d="M5 21V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v16M3 21h14M15 9h2a2 2 0 0 1 2 2v5a1.5 1.5 0 0 0 3 0V8l-3-3M7 8h6"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24"><path d="M20 12v9H4v-9M2 7h20v5H2zM12 21V7M12 7H7.5a2.5 2.5 0 1 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 1 0 0-5C13 2 12 7 12 7z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+</svg>
+
+<!-- Compact ticket bar (slides in when the big strip has scrolled away) -->
+<nav class="ticket-mini" id="ticketMini" aria-label="Sections">
+  <div class="ticket-mini__in">
+    <a href="#top"><svg class="icon"><use href="#i-key"/></svg><b data-i18n="nav.lounge.title">HPE Private Lounge</b></a>
+    <a href="#benefits"><svg class="icon"><use href="#i-star"/></svg><b data-i18n="nav.benefits.title">Exclusive Benefits</b></a>
+    <a href="#incentive"><svg class="icon"><use href="#i-tag"/></svg><b data-i18n="nav.incentive.title">Partner Perks</b></a>
+    <a href="#prize"><svg class="icon"><use href="#i-mountain"/></svg><b data-i18n="nav.prize.title">Active Vacation</b></a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- ============ HERO ============ -->
+  <header class="hero" id="top">
+    <img class="hero__photo" src="assets/images/hero-photo.jpg" width="1800" height="1009"
+         alt="Hiker leaping in front of an alpine lake" data-i18n-alt="hero.alt" fetchpriority="high">
+    <p class="hero__word" aria-hidden="true" data-hero-word>LOUNGE</p>
+    <img class="hero__cut" src="assets/images/hiker-cutout.png" width="1800" height="1009" alt="" aria-hidden="true">
+
+    <div class="hero__nav d-flex justify-content-between align-items-center">
+      <span class="brand"><span>Hewlett Packard</span><span>Enterprise</span></span>
+      <div class="d-flex align-items-center gap-2">
+        <div class="lang-switch" role="group" aria-label="Language">
+          <button type="button" data-lang="en" aria-pressed="true">EN</button>
+          <button type="button" data-lang="de" aria-pressed="false">DE</button>
+        </div>
+        <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch between light and dark mode" aria-pressed="false">
+          <svg class="icon icon-moon"><use href="#i-moon"/></svg>
+          <svg class="icon icon-sun"><use href="#i-sun"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="hero__copy">
+      <h1 class="hero__title" data-i18n="hero.title">Welcome to the <em>HPE Private Lounge</em> &ndash; Exclusive Benefits for Our Partners</h1>
+      <p class="hero__sub" data-i18n="hero.sub">Secure fuel and wish vouchers and win a spectacular active vacation for 2</p>
+    </div>
+  </header>
+
+  <!-- ============ TICKET NAVIGATION ============ -->
+  <div class="ticket-nav-slot">
+    <nav class="ticket-nav" id="ticketNav" aria-label="Highlights">
+      <a class="ticket-nav__item" href="#top">
+        <span class="ticket-icon"><svg class="icon"><use href="#i-key"/></svg></span>
+        <span><b data-i18n="nav.lounge.title">HPE Private Lounge</b><em data-i18n="nav.lounge.desc">Win an unforgettable active vacation, as well as fuel and wish vouchers</em></span>
+      </a>
+      <a class="ticket-nav__item" href="#benefits">
+        <span class="ticket-icon"><svg class="icon"><use href="#i-star"/></svg></span>
+        <span><b data-i18n="nav.benefits.title">Exclusive Benefits</b><em data-i18n="nav.benefits.desc">Tailored offers and extra points only visible to members</em></span>
+      </a>
+      <a class="ticket-nav__item" href="#incentive">
+        <span class="ticket-icon"><svg class="icon"><use href="#i-tag"/></svg></span>
+        <span><b data-i18n="nav.incentive.title">Partner Perks</b><em data-i18n="nav.incentive.desc">Fuel and wish vouchers worth €15</em></span>
+      </a>
+      <a class="ticket-nav__item" href="#prize">
+        <span class="ticket-icon"><svg class="icon"><use href="#i-mountain"/></svg></span>
+        <span><b data-i18n="nav.prize.title">Active Vacation</b><em data-i18n="nav.prize.desc">Win an unforgettable active vacation worth €199.90</em></span>
+      </a>
+    </nav>
+  </div>
+
+  <main id="main">
+
+    <!-- ============ INTRO ============ -->
+    <section class="intro" id="benefits">
+      <div class="content-wrap">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-7">
+            <span class="eyebrow" data-i18n="intro.eyebrow">HPE Private Lounge Program</span>
+            <p class="intro__lead" data-i18n="intro.lead">Discover exclusive benefits and tailored offers from our HPE Private Lounge program. Become part of an exclusive club designed specifically to promote your Hewlett Packard Enterprise &amp; HPE Aruba Networking business growth and enrich your experience with our leading products.</p>
+            <h2 class="section-title" data-i18n="intro.title">Exclusive offers await you!</h2>
+            <p class="intro__text" data-i18n="intro.take">Take advantage of our special product offers and secure not only fuel and wish vouchers, but also the chance to win an unforgettable active vacation.</p>
+            <p class="intro__text" data-i18n="intro.experience">Experience how your investments in leading HPE technologies not only move you forward technologically, but also reward you with unique experiences!</p>
+          </div>
+          <div class="col-lg-5">
+            <aside class="points">
+              <span class="points__label" data-i18n="points.label">Members only</span>
+              <p data-i18n="points.text">As a member of the Private Lounge Club, you also benefit from high points from the ALSO Bonus Club, which you can redeem in our rewards shop. In addition to the standard points we award quarterly on our HPE products, our Private Lounge members receive additional points that are only visible to members.</p>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ THE INCENTIVE ============ -->
+    <section class="incentive" id="incentive">
+      <div class="content-wrap">
+        <div class="incentive__head">
+          <h2 class="incentive__title" data-i18n="incentive.title">The incentive</h2>
+          <span class="period"><span data-i18n="incentive.period">Promotion period:</span> <b data-i18n="incentive.dates">August 1 to October 15, 2024</b></span>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-6">
+            <article class="voucher voucher--fuel">
+              <div class="voucher__stage">
+                <div class="voucher__head">
+                  <span class="voucher__tag"><svg class="icon"><use href="#i-fuel"/></svg><span data-i18n="voucher.fuel">Fuel voucher</span></span>
+                  <span class="voucher__amount" data-i18n="voucher.amount">€15</span>
+                </div>
+                <img class="voucher__product" src="assets/images/product-smart-choice.png" alt="HPE Smart Choice servers" data-i18n-alt="smart.alt" loading="lazy">
+              </div>
+              <div class="voucher__body">
+                <h3 class="voucher__title">HPE Smart Choice</h3>
+                <p class="voucher__text" data-i18n="smart.desc">Receive fuel vouchers worth €15 for every device purchased from the HPE Smart Choice product line. A maximum of 2 vouchers will be issued per customer. A total of 100 vouchers are available.</p>
+                <ul class="voucher__chips"><li data-i18n="chip.max">Max. 2 per customer</li><li data-i18n="chip.v100">100 vouchers available</li></ul>
+                <a class="btn btn-lounge" data-i18n="smart.cta" target="_blank" rel="noopener"
+                   href="https://www.also.com/ec/cms5/1010/en_DE/search.jsps?q=HPE%20Smart%20Choice%20Server&amp;fo=q&amp;show=25&amp;s=relevance-&amp;todo=search">HPE Smart Choice Products in the ALSO Shop</a>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-md-6">
+            <article class="voucher voucher--wish">
+              <div class="voucher__stage">
+                <div class="voucher__head">
+                  <span class="voucher__tag"><svg class="icon"><use href="#i-gift"/></svg><span data-i18n="voucher.wish">Wish voucher</span></span>
+                  <span class="voucher__amount" data-i18n="voucher.amount">€15</span>
+                </div>
+                <img class="voucher__product" src="assets/images/product-msa-storage.png" alt="HPE MSA Storage array" data-i18n-alt="msa.alt" loading="lazy">
+              </div>
+              <div class="voucher__body">
+                <h3 class="voucher__title">HPE MSA Storage</h3>
+                <p class="voucher__text" data-i18n="msa.desc">For every purchase of the HPE MSA Storage devices listed below, you will receive a wish voucher worth €15. A maximum of 2 vouchers can be claimed per customer. A total of 100 vouchers are available.</p>
+                <ul class="voucher__chips"><li data-i18n="chip.max">Max. 2 per customer</li><li data-i18n="chip.v100">100 vouchers available</li></ul>
+                <a class="btn btn-lounge" data-i18n="msa.cta" target="_blank" rel="noopener"
+                   href="https://www.also.com/ec/cms5/1010/de_DE/search.jsps?show=25&amp;todo=search&amp;q=46134733,46134734,46134735,46134724,46134725,46134726,46134727,46134728,46134729,46134737,46134738,46712892,46712894,46712896,46712897,46712900,46712912,46134730,46134731,46134732,46134736,4036454,4036452&amp;fo=q&amp;s=relevance">HPE MSA Storage Products in the ALSO Shop</a>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-md-6">
+            <article class="voucher voucher--fuel">
+              <div class="voucher__stage">
+                <div class="voucher__head">
+                  <span class="voucher__tag"><svg class="icon"><use href="#i-fuel"/></svg><span data-i18n="voucher.fuel">Fuel voucher</span></span>
+                  <span class="voucher__amount" data-i18n="voucher.amount">€15</span>
+                </div>
+                <img class="voucher__product" src="assets/images/product-access-point.png" alt="HPE Networking Instant On access point" data-i18n-alt="ap.alt" loading="lazy">
+              </div>
+              <div class="voucher__body">
+                <h3 class="voucher__title">HPE Networking Instant On Access Points</h3>
+                <p class="voucher__text" data-i18n="ap.desc">Receive fuel vouchers worth €15 for every purchase of one of the HPE Networking Instant On Access Points listed below. A maximum of 2 vouchers can be issued per customer. A total of 70 vouchers are available.</p>
+                <ul class="voucher__chips"><li data-i18n="chip.max">Max. 2 per customer</li><li data-i18n="chip.v70">70 vouchers available</li></ul>
+                <a class="btn btn-lounge" data-i18n="ap.cta" target="_blank" rel="noopener"
+                   href="https://www.also.com/ec/cms5/1010/search.do?q=3933566,3933568,4541275,4541276,46851413,47092434,47092436,47092437,47092439,47092549,47092438,47107999,47107998,47109627&amp;fo=q&amp;show=25&amp;s=relevance-&amp;todo=search">HPE Networking Instant On Access Points in the ALSO Shop</a>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-md-6">
+            <article class="voucher voucher--wish">
+              <div class="voucher__stage">
+                <div class="voucher__head">
+                  <span class="voucher__tag"><svg class="icon"><use href="#i-gift"/></svg><span data-i18n="voucher.wish">Wish voucher</span></span>
+                  <span class="voucher__amount" data-i18n="voucher.amount">€15</span>
+                </div>
+                <img class="voucher__product" src="assets/images/product-switch.png" alt="HPE Networking Instant On switch" data-i18n-alt="sw.alt" loading="lazy">
+              </div>
+              <div class="voucher__body">
+                <h3 class="voucher__title">HPE Networking Instant On Switches</h3>
+                <p class="voucher__text" data-i18n="sw.desc">For every device purchased from the HPE Networking Instant On Switches listed under the link below, you can receive a wish voucher worth €15. A maximum of 2 vouchers can be claimed per customer. We are issuing a total of 70 vouchers.</p>
+                <ul class="voucher__chips"><li data-i18n="chip.max">Max. 2 per customer</li><li data-i18n="chip.v70">70 vouchers available</li></ul>
+                <a class="btn btn-lounge" data-i18n="sw.cta" target="_blank" rel="noopener"
+                   href="https://www.also.com/ec/cms5/1010/search.do?q=46119900,46119911,46119912,46119913,46119914,46119915,46119916,4395274,4395278,4395280,4395282,3897901,3897902,3897903,46142613,3897905,46142612,3897906,46142611,4337752,4337754,4337756,4337758,4337760,46487681,4476578,46125981,4476579,4538066,4538067,47243385,47243384&amp;fo=q&amp;show=25&amp;s=relevance-&amp;todo=search">HPE Networking Instant On Switches in the ALSO Shop</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PRIZE DRAW ============ -->
+    <section class="prize" id="prize">
+      <div class="content-wrap">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-6">
+            <img class="prize__photo" src="assets/images/prize-photo.jpg" alt="Hiker standing on a rock above a mountain valley" data-i18n-alt="prize.alt" loading="lazy">
+          </div>
+          <div class="col-lg-6">
+            <span class="eyebrow" data-i18n="prize.eyebrow">Prize draw</span>
+            <h2 class="section-title" data-i18n="prize.title">Increase your chances of winning</h2>
+            <p class="prize__amount" data-i18n="prize.amount">€199.90</p>
+            <p data-i18n="prize.text">With every purchase of an HPE Smart Choice, HPE MSA Storage, or HPE Networking Instant On product, you collect tickets for an exclusive prize draw. For each purchase of one of the listed devices (separated into HPE &amp; HPE Networking Instant On), you receive one ticket.</p>
+            <p><strong data-i18n="prize.bold">Win an unforgettable active vacation worth €199.90. The more you buy, the higher your chances of winning!</strong></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ REGISTER ============ -->
+    <section class="ticket-reg" id="register">
+      <div class="ticket-reg__main">
+        <span class="eyebrow" data-i18n="intro.eyebrow">HPE Private Lounge Program</span>
+        <h2 class="ticket-reg__title" data-i18n="reg.title">Register today</h2>
+        <p class="ticket-reg__text" data-i18n="reg.text">Members who are already registered do not need to register again; they automatically take part in the incentive.</p>
+      </div>
+      <div class="ticket-reg__stub">
+        <span class="ticket-reg__valid" data-i18n="reg.valid">Aug 1 – Oct 15, 2024</span>
+        <a class="btn btn-gold" data-i18n="reg.cta" target="_blank" rel="noopener"
+           href="https://www.also.com/ec/cms5/de_1010/1010/informationen/promotions/hpe-2021-q4-hpe-private-lounge/hpe_2021_q4_hpe_private_lounge_webform.jsp">Register Now</a>
+        <i class="barcode" aria-hidden="true"></i>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ CONTACT + END OF PAGE ============ -->
+  <div class="endcap">
+    <footer class="ticket-contact" id="contact">
+      <div class="ticket-contact__main">
+        <h2 class="ticket-contact__title" data-i18n="contact.title">Contact</h2>
+        <p data-i18n="contact.text">For further information or if you have questions, please contact our sales team:</p>
+        <ul class="contact-list">
+          <li>
+            <span class="contact-icon"><svg class="icon"><use href="#i-mail"/></svg></span>
+            <span><small data-i18n="contact.email">Email</small><a href="mailto:hpe-solutions-de@also.com">hpe-solutions-de@also.com</a></span>
+          </li>
+          <li>
+            <span class="contact-icon"><svg class="icon"><use href="#i-phone"/></svg></span>
+            <span><small data-i18n="contact.phone">Phone</small><a href="tel:+492921995445">+49 2921 99-54 45</a></span>
+          </li>
+        </ul>
+      </div>
+      <ul class="ticket-contact__note">
+        <li data-i18n="note.1">Customers who are already registered do <strong>not</strong> need to register again and automatically take part in the incentive.</li>
+        <li data-i18n="note.2">Valid while supplies last.</li>
+        <li data-i18n="note.3">We must point out that you are required to pay taxes on your winnings and report them to the tax office without delay.</li>
+      </ul>
+    </footer>
+
+    <div class="endbar">
+      <span>HPE Private Lounge · Q4 2024</span>
+      <a href="#top" data-i18n="endbar.up">Back to top</a>
+    </div>
+  </div>
+
+</div>
+
+<script src="js/theme.js" defer></script>
+<script src="js/i18n.js" defer></script>
+<script src="js/navigation.js" defer></script>
+<script src="js/hero.js" defer></script>
+</body>
+</html>
