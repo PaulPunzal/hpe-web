@@ -33,8 +33,6 @@
   <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></symbol>
   <symbol id="i-tag" viewBox="0 0 24 24"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.3"/></symbol>
   <symbol id="i-mountain" viewBox="0 0 24 24"><path d="M3 20l6.5-11 4 6.5 2.5-3.5L21 20z"/><path d="M17.5 5.5h.01"/></symbol>
-  <symbol id="i-fuel" viewBox="0 0 24 24"><path d="M5 21V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v16M3 21h14M15 9h2a2 2 0 0 1 2 2v5a1.5 1.5 0 0 0 3 0V8l-3-3M7 8h6"/></symbol>
-  <symbol id="i-gift" viewBox="0 0 24 24"><path d="M20 12v9H4v-9M2 7h20v5H2zM12 21V7M12 7H7.5a2.5 2.5 0 1 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 1 0 0-5C13 2 12 7 12 7z"/></symbol>
   <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
   <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></symbol>
   <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
@@ -130,7 +128,7 @@
       <div class="content-wrap">
         <div class="incentive__head">
           <h2 class="incentive__title" data-i18n="incentive.title">The incentive</h2>
-          <span class="period"><span data-i18n="incentive.period">Promotion period:</span> <b data-i18n="incentive.dates">August 1 to October 15, 2024</b></span>
+          <p class="period"><span data-i18n="incentive.period">Promotion period:</span> <b data-i18n="incentive.dates">August 1 to October 15, 2024</b></p>
         </div>
 
         <div class="row g-4">
@@ -138,7 +136,7 @@
             <article class="voucher voucher--fuel">
               <div class="voucher__stage">
                 <div class="voucher__head">
-                  <span class="voucher__tag"><svg class="icon"><use href="#i-fuel"/></svg><span data-i18n="voucher.fuel">Fuel voucher</span></span>
+                  <span class="voucher__tag" data-i18n="voucher.fuel">Fuel voucher</span>
                   <span class="voucher__amount" data-i18n="voucher.amount">€15</span>
                 </div>
                 <img class="voucher__product" src="assets/images/product-smart-choice.png" alt="HPE Smart Choice servers" data-i18n-alt="smart.alt" loading="lazy">
@@ -146,7 +144,7 @@
               <div class="voucher__body">
                 <h3 class="voucher__title">HPE Smart Choice</h3>
                 <p class="voucher__text" data-i18n="smart.desc">Receive fuel vouchers worth €15 for every device purchased from the HPE Smart Choice product line. A maximum of 2 vouchers will be issued per customer. A total of 100 vouchers are available.</p>
-                <ul class="voucher__chips"><li data-i18n="chip.max">Max. 2 per customer</li><li data-i18n="chip.v100">100 vouchers available</li></ul>
+                <p class="voucher__meta"><span data-i18n="chip.max">Max. 2 per customer</span><span data-i18n="chip.v100">100 vouchers available</span></p>
                 <a class="btn btn-lounge" data-i18n="smart.cta" target="_blank" rel="noopener"
                    href="https://www.also.com/ec/cms5/1010/en_DE/search.jsps?q=HPE%20Smart%20Choice%20Server&amp;fo=q&amp;show=25&amp;s=relevance-&amp;todo=search">HPE Smart Choice Products in the ALSO Shop</a>
               </div>
@@ -157,7 +155,7 @@
             <article class="voucher voucher--wish">
               <div class="voucher__stage">
                 <div class="voucher__head">
-                  <span class="voucher__tag"><svg class="icon"><use href="#i-gift"/></svg><span data-i18n="voucher.wish">Wish voucher</span></span>
+                  <span class="voucher__tag" data-i18n="voucher.wish">Wish voucher</span>
                   <span class="voucher__amount" data-i18n="voucher.amount">€15</span>
                 </div>
                 <img class="voucher__product" src="assets/images/product-msa-storage.png" alt="HPE MSA Storage array" data-i18n-alt="msa.alt" loading="lazy">
@@ -165,7 +163,7 @@
               <div class="voucher__body">
                 <h3 class="voucher__title">HPE MSA Storage</h3>
                 <p class="voucher__text" data-i18n="msa.desc">For every purchase of the HPE MSA Storage devices listed below, you will receive a wish voucher worth €15. A maximum of 2 vouchers can be claimed per customer. A total of 100 vouchers are available.</p>
-                <ul class="voucher__chips"><li data-i18n="chip.max">Max. 2 per customer</li><li data-i18n="chip.v100">100 vouchers available</li></ul>
+                <p class="voucher__meta"><span data-i18n="chip.max">Max. 2 per customer</span><span data-i18n="chip.v100">100 vouchers available</span></p>
                 <a class="btn btn-lounge" data-i18n="msa.cta" target="_blank" rel="noopener"
                    href="https://www.also.com/ec/cms5/1010/de_DE/search.jsps?show=25&amp;todo=search&amp;q=46134733,46134734,46134735,46134724,46134725,46134726,46134727,46134728,46134729,46134737,46134738,46712892,46712894,46712896,46712897,46712900,46712912,46134730,46134731,46134732,46134736,4036454,4036452&amp;fo=q&amp;s=relevance">HPE MSA Storage Products in the ALSO Shop</a>
               </div>
@@ -176,7 +174,7 @@
             <article class="voucher voucher--fuel">
               <div class="voucher__stage">
                 <div class="voucher__head">
-                  <span class="voucher__tag"><svg class="icon"><use href="#i-fuel"/></svg><span data-i18n="voucher.fuel">Fuel voucher</span></span>
+                  <span class="voucher__tag" data-i18n="voucher.fuel">Fuel voucher</span>
                   <span class="voucher__amount" data-i18n="voucher.amount">€15</span>
                 </div>
                 <img class="voucher__product" src="assets/images/product-access-point.png" alt="HPE Networking Instant On access point" data-i18n-alt="ap.alt" loading="lazy">
@@ -184,7 +182,7 @@
               <div class="voucher__body">
                 <h3 class="voucher__title">HPE Networking Instant On Access Points</h3>
                 <p class="voucher__text" data-i18n="ap.desc">Receive fuel vouchers worth €15 for every purchase of one of the HPE Networking Instant On Access Points listed below. A maximum of 2 vouchers can be issued per customer. A total of 70 vouchers are available.</p>
-                <ul class="voucher__chips"><li data-i18n="chip.max">Max. 2 per customer</li><li data-i18n="chip.v70">70 vouchers available</li></ul>
+                <p class="voucher__meta"><span data-i18n="chip.max">Max. 2 per customer</span><span data-i18n="chip.v70">70 vouchers available</span></p>
                 <a class="btn btn-lounge" data-i18n="ap.cta" target="_blank" rel="noopener"
                    href="https://www.also.com/ec/cms5/1010/search.do?q=3933566,3933568,4541275,4541276,46851413,47092434,47092436,47092437,47092439,47092549,47092438,47107999,47107998,47109627&amp;fo=q&amp;show=25&amp;s=relevance-&amp;todo=search">HPE Networking Instant On Access Points in the ALSO Shop</a>
               </div>
@@ -195,7 +193,7 @@
             <article class="voucher voucher--wish">
               <div class="voucher__stage">
                 <div class="voucher__head">
-                  <span class="voucher__tag"><svg class="icon"><use href="#i-gift"/></svg><span data-i18n="voucher.wish">Wish voucher</span></span>
+                  <span class="voucher__tag" data-i18n="voucher.wish">Wish voucher</span>
                   <span class="voucher__amount" data-i18n="voucher.amount">€15</span>
                 </div>
                 <img class="voucher__product" src="assets/images/product-switch.png" alt="HPE Networking Instant On switch" data-i18n-alt="sw.alt" loading="lazy">
@@ -203,7 +201,7 @@
               <div class="voucher__body">
                 <h3 class="voucher__title">HPE Networking Instant On Switches</h3>
                 <p class="voucher__text" data-i18n="sw.desc">For every device purchased from the HPE Networking Instant On Switches listed under the link below, you can receive a wish voucher worth €15. A maximum of 2 vouchers can be claimed per customer. We are issuing a total of 70 vouchers.</p>
-                <ul class="voucher__chips"><li data-i18n="chip.max">Max. 2 per customer</li><li data-i18n="chip.v70">70 vouchers available</li></ul>
+                <p class="voucher__meta"><span data-i18n="chip.max">Max. 2 per customer</span><span data-i18n="chip.v70">70 vouchers available</span></p>
                 <a class="btn btn-lounge" data-i18n="sw.cta" target="_blank" rel="noopener"
                    href="https://www.also.com/ec/cms5/1010/search.do?q=46119900,46119911,46119912,46119913,46119914,46119915,46119916,4395274,4395278,4395280,4395282,3897901,3897902,3897903,46142613,3897905,46142612,3897906,46142611,4337752,4337754,4337756,4337758,4337760,46487681,4476578,46125981,4476579,4538066,4538067,47243385,47243384&amp;fo=q&amp;show=25&amp;s=relevance-&amp;todo=search">HPE Networking Instant On Switches in the ALSO Shop</a>
               </div>
