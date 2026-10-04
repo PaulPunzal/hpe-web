@@ -14,14 +14,14 @@
   min-height: max(760px, 100svh);
   overflow: hidden;
   border-radius: 0;
-  background: #cfdde4;
+  background: #22343d;                      /* dark base: never shows as a light edge line */
   color: #fff;
 }
 
 .hero__photo,
 .hero__cut {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
+  position: absolute; inset: -1px;                /* 1px overshoot hides sub-pixel gaps at fractional zoom */
+  width: calc(100% + 2px); height: calc(100% + 2px);
   object-fit: cover; object-position: 62% 35%;   /* same framing keeps the cut-out aligned */
 }
 .hero__photo { z-index: 0; }
@@ -186,7 +186,7 @@
      - phones and tablets (< 1200px)      -> normal 100%
    Change --ui-zoom to fine-tune; 1 turns it off. */
 @media (min-width: 1200px) {
-  html { --ui-zoom: 1.25; zoom: var(--ui-zoom); }
+  html { --ui-zoom: 0.8; zoom: var(--ui-zoom); }
 
   /* viewport units get multiplied by the zoom too, so the hero uses plain percentages here */
   /* The hero stops growing at --hero-max, so zooming out (or a huge monitor) doesn't stretch it.
