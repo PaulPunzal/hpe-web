@@ -6,9 +6,14 @@
   isolation: isolate;
   display: flex;
   flex-direction: column;
+  /* full screen: breaks out of the centred .page column to the edges of the viewport */
+  width: 100vw;
+  margin-inline: calc(50% - 50vw);
   min-height: 760px;
+  min-height: max(760px, 100vh);
+  min-height: max(760px, 100svh);
   overflow: hidden;
-  border-radius: var(--radius) var(--radius) 0 0;
+  border-radius: 0;
   background: #cfdde4;
   color: #fff;
 }
@@ -73,10 +78,11 @@
 [data-bs-theme="dark"] .theme-toggle .icon-sun { display: block; }
 [data-bs-theme="dark"] .theme-toggle .icon-moon { display: none; }
 
-/* Headline block: always starts below the giant word */
+/* Headline block: always starts below the giant word.
+   Anchored to the top (not the bottom) so a taller, full-screen hero doesn't push it away from the word. */
 .hero__copy {
   position: relative; z-index: 5; flex: 1;
-  display: flex; flex-direction: column; justify-content: flex-end;
+  display: flex; flex-direction: column; justify-content: flex-start;
   max-width: 540px;
   padding: calc(var(--g) * .9 + 34px) 40px 170px;
 }
@@ -93,11 +99,35 @@
   .hero__copy { max-width: none; }
 }
 @media (max-width: 575.98px) {
-  .hero { --g: 27vw; min-height: 720px; }
+  .hero { --g: 27vw; min-height: 720px; min-height: max(720px, 100svh); }
   .hero__word { left: 52%; }
   .hero__nav { padding-inline: 16px; }
   .hero__copy { padding-inline: 22px; }
   .lang-switch button { padding: .45rem .55rem; }
   .theme-toggle { width: 34px; height: 34px; }
   .brand { font-size: .625rem; }
+}
+
+/* Desktop default scale: the page renders as if the browser were zoomed to 125%.
+   Phones and small laptops (< 1200px wide) keep the normal 100% size.
+   Change --ui-zoom to 1.1, 1.2 ... to fine-tune; 1 turns it off. */
+@media (min-width: 1200px) {
+  html { --ui-zoom: 1.25; zoom: var(--ui-zoom); }
+
+  /* viewport units get multiplied by the zoom too, so the hero uses plain percentages here */
+  /* The hero stops growing at --hero-max, so zooming out (or a huge monitor) doesn't stretch it.
+     Beyond that width the page is centred and the backdrop below shows on both sides. */
+  html { --hero-max: 1680px; --hero-h: max(760px, min(calc(100svh / var(--ui-zoom)), 900px)); }
+  .page { position: relative; max-width: var(--hero-max); margin-inline: auto; }
+  #main, .endcap { max-width: var(--page-max); margin-inline: auto; }
+  .hero { width: auto; margin-inline: 0; min-height: var(--hero-h); }
+
+  /* Backdrop behind the hero, full screen width: dark like the top of the photo,
+     fading into the page colour exactly where the hero fades out. */
+  .page::before {
+    content: ""; position: absolute; z-index: -1; top: 0;
+    left: calc(50% - 50vw); right: calc(50% - 50vw);
+    height: var(--hero-h);
+    background: linear-gradient(180deg, #22343d 0%, #4a6670 55%, var(--page) 100%);
+  }
 }

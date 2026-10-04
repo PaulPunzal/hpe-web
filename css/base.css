@@ -3,7 +3,7 @@ html { scroll-behavior: smooth; overflow-x: clip; }
 
 body {
   margin: 0;
-  padding: clamp(10px, 2vw, 24px) clamp(10px, 2vw, 24px) 0;
+  padding: 0;                                   /* no outer margin: hero runs edge to edge */
   overflow-x: clip;
   background: var(--page);
   color: var(--ink);
