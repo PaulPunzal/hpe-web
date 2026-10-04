@@ -78,46 +78,120 @@
 [data-bs-theme="dark"] .theme-toggle .icon-sun { display: block; }
 [data-bs-theme="dark"] .theme-toggle .icon-moon { display: none; }
 
-/* Headline block: always starts below the giant word.
-   Anchored to the top (not the bottom) so a taller, full-screen hero doesn't push it away from the word. */
+/* ======================================================================
+   Headline + sub-headline: responsive per screen size
+   - 768px and up : left aligned, dark emphasis sits on the left behind the text
+   - below 768px  : centred, dark emphasis is centred behind the text
+   Sizes follow the hero's own width (cqi) and are tuned for each range below.
+   ====================================================================== */
+.hero { container-type: inline-size; }
+
 .hero__copy {
-  position: relative; z-index: 5; flex: 1;
-  display: flex; flex-direction: column; justify-content: flex-start;
+  --t: clamp(2rem, 3.7cqi, 2.875rem);        /* headline size */
+  --s: clamp(1.0625rem, 1.55cqi, 1.1875rem); /* sub-headline size */
+  --pt: calc(var(--g) * .9 + 34px);          /* space reserved for the giant word */
+  position: relative; isolation: isolate; z-index: 5; flex: 1;
+  display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start;
   max-width: 540px;
-  padding: calc(var(--g) * .9 + 34px) 40px 170px;
+  padding: var(--pt) 40px 200px;
+  text-align: left;
 }
+
+/* Emphasis behind the text: it is attached to the text block, so it follows the alignment.
+   Left aligned -> glow anchored on the left edge. Centred -> glow anchored in the middle. */
+.hero__copy::before {
+  content: ""; position: absolute; z-index: -1; pointer-events: none;
+  top: calc(var(--pt) - 80px); left: 0; right: -80px;
+  height: calc(var(--t) * 4.8 + var(--s) * 3.4 + 150px);
+  background: radial-gradient(ellipse 85% 62% at 0% 50%, rgba(8, 20, 28, .62), rgba(8, 20, 28, .32) 45%, transparent 75%);
+}
+
 .hero__title {
-  margin-bottom: 1rem;
-  font: 800 clamp(1.875rem, 3.7vw, 2.875rem) / 1.1 var(--font-body);
-  letter-spacing: -.025em; text-shadow: 0 2px 20px rgba(0, 0, 0, .3);
+  max-width: 14em;
+  margin-bottom: clamp(.6rem, 1.2cqi, 1rem);
+  font: 800 var(--t) / 1.1 var(--font-body);
+  letter-spacing: -.025em;
+  text-wrap: balance;
+  /* shadow in em: grows and shrinks with the text */
+  text-shadow: 0 .04em .5em rgba(0, 0, 0, .35), 0 .02em .06em rgba(0, 0, 0, .3);
 }
 .hero__title em { font-style: normal; color: var(--headline-green); }
-.hero__sub { max-width: 26em; margin: 0; font-size: 1.1875rem; color: #e3edf1; }
+.hero__sub {
+  max-width: min(26em, 100%); margin: 0;
+  font-size: var(--s); line-height: 1.5; color: #e9f1f4;
+  text-wrap: pretty;
+  text-shadow: 0 1px .7em rgba(0, 0, 0, .4), 0 1px 2px rgba(0, 0, 0, .3);
+}
 
+/* Tablet portrait (768-991): still left aligned, wider column */
 @media (max-width: 991.98px) {
   .hero__word { left: 56%; }
-  .hero__copy { max-width: none; }
+  .hero__copy { --t: clamp(2rem, 3.9cqi, 2.375rem); --s: 1.0625rem; max-width: 70%; padding-inline: 32px; }
+  .hero__copy::before { right: -40px; }
+  .hero__title { max-width: 13em; }
 }
+
+/* Large phones / small tablets (576-767): centred */
+@media (max-width: 767.98px) {
+  .hero__word { left: 50%; }
+  .hero__nav { padding-inline: 24px; }
+  .hero__copy {
+    --t: clamp(2rem, 5.4cqi, 2.5rem); --s: 1.0625rem; --pt: calc(var(--g) * .9 + 64px);
+    align-items: center; text-align: center; max-width: none; padding-inline: 28px;
+  }
+  .hero__copy::before {
+    left: 0; right: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(8, 20, 28, .62), rgba(8, 20, 28, .32) 45%, transparent 75%);
+  }
+  .hero__title { max-width: 13em; margin-inline: auto; }
+  .hero__sub { margin-inline: auto; max-width: 28em; }
+  /* the left-hand dark wash is replaced by the centred one above; keep a light overall dim + the top fade */
+  .hero::before {
+    background:
+      linear-gradient(180deg, rgba(14, 26, 34, .55), rgba(14, 26, 34, 0) 30%),
+      linear-gradient(180deg, rgba(14, 26, 34, .18), rgba(14, 26, 34, .18));
+  }
+}
+
+/* Phones (< 576): centred, smaller type */
 @media (max-width: 575.98px) {
   .hero { --g: 27vw; min-height: 720px; min-height: max(720px, 100svh); }
-  .hero__word { left: 52%; }
+  .hero__word { left: 50%; }
   .hero__nav { padding-inline: 16px; }
-  .hero__copy { padding-inline: 22px; }
+  .hero__copy { --t: clamp(1.625rem, 7.6cqi, 2rem); --s: 1rem; --pt: calc(var(--g) * .9 + 72px); padding-inline: 22px; padding-bottom: 190px; }
   .lang-switch button { padding: .45rem .55rem; }
   .theme-toggle { width: 34px; height: 34px; }
   .brand { font-size: .625rem; }
 }
 
-/* Desktop default scale: the page renders as if the browser were zoomed to 125%.
-   Phones and small laptops (< 1200px wide) keep the normal 100% size.
-   Change --ui-zoom to 1.1, 1.2 ... to fine-tune; 1 turns it off. */
+/* 768px and up: the text block is centred vertically between the giant word and the ticket,
+   so a tall window (or the inspector at 900px high) no longer leaves a big empty gap under the text.
+   The hero is also capped in height so it never becomes a tall empty photo. */
+@media (min-width: 768px) {
+  .hero { min-height: max(700px, min(100svh, 840px)); }
+  .hero__copy { justify-content: center; }
+  .hero__copy::before {
+    top: 0; bottom: 0; height: auto;
+    background: radial-gradient(ellipse 90% 34% at 0% 50%, rgba(8, 20, 28, .62), rgba(8, 20, 28, .32) 45%, transparent 75%);
+  }
+}
+
+/* Ticket strip: pulled up a little more so the icons show fully at the bottom of the first screen.
+   (.page prefix = higher specificity than tickets.css, which is loaded later) */
+.page .ticket-nav-slot { margin-top: -92px; }
+
+/* Default scale, as if the browser were zoomed:
+     - laptops   (1200px to 1699px wide)  -> 80%
+     - big monitors (1700px and wider)    -> 125%  (see the block at the very end)
+     - phones and tablets (< 1200px)      -> normal 100%
+   Change --ui-zoom to fine-tune; 1 turns it off. */
 @media (min-width: 1200px) {
-  html { --ui-zoom: 1.25; zoom: var(--ui-zoom); }
+  html { --ui-zoom: .8; zoom: var(--ui-zoom); }
 
   /* viewport units get multiplied by the zoom too, so the hero uses plain percentages here */
   /* The hero stops growing at --hero-max, so zooming out (or a huge monitor) doesn't stretch it.
      Beyond that width the page is centred and the backdrop below shows on both sides. */
-  html { --hero-max: 1680px; --hero-h: max(760px, min(calc(100svh / var(--ui-zoom)), 900px)); }
+  html { --hero-max: 1680px; --hero-h: max(760px, min(calc(100svh / var(--ui-zoom)), 840px)); }
   .page { position: relative; max-width: var(--hero-max); margin-inline: auto; }
   #main, .endcap { max-width: var(--page-max); margin-inline: auto; }
   .hero { width: auto; margin-inline: 0; min-height: var(--hero-h); }
@@ -130,4 +204,9 @@
     height: var(--hero-h);
     background: linear-gradient(180deg, #22343d 0%, #4a6670 55%, var(--page) 100%);
   }
+}
+
+/* Big desktop monitors: 125% */
+@media (min-width: 1700px) {
+  html { --ui-zoom: 1.25; }
 }
