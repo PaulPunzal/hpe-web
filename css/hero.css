@@ -186,7 +186,7 @@
      - phones and tablets (< 1200px)      -> normal 100%
    Change --ui-zoom to fine-tune; 1 turns it off. */
 @media (min-width: 1200px) {
-  html { --ui-zoom: 0.8; zoom: var(--ui-zoom); }
+  html { --ui-zoom: 1.25; zoom: var(--ui-zoom); }
 
   /* viewport units get multiplied by the zoom too, so the hero uses plain percentages here */
   /* The hero stops growing at --hero-max, so zooming out (or a huge monitor) doesn't stretch it.
