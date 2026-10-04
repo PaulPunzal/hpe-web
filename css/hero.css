@@ -200,7 +200,7 @@
      fading into the page colour exactly where the hero fades out. */
   .page::before {
     content: ""; position: absolute; z-index: -1; top: 0;
-    left: calc(50% - 50vw); right: calc(50% - 50vw);
+    left: -9999px; right: -9999px;            /* bleeds past both screen edges at any zoom */
     height: var(--hero-h);
     background: linear-gradient(180deg, #22343d 0%, #4a6670 55%, var(--page) 100%);
   }
@@ -210,3 +210,11 @@
 @media (min-width: 1700px) {
   html { --ui-zoom: 1.25; }
 }
+
+/* Full-width coloured bands (The incentive, closing band).
+   They used calc(50% - 50vw), but viewport units get shrunk by the page scale on laptops (80%),
+   which left the bands narrower than the screen and cut the tickets at the sides.
+   A large fixed overflow works at every zoom; the page already clips horizontal overflow.
+   (.page prefix beats the selectors in offers.css / tickets.css, which load later) */
+.page .incentive::before,
+.page .endcap::before { left: -9999px; right: -9999px; }
