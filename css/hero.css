@@ -1,12 +1,12 @@
-/* Hero layers, bottom to top:
-   photo (0) > dark wash (1) > giant word (2) > hiker cut-out (3) > fade into page (4) > nav + copy (5) */
+/* Hero section (photo, giant word, top bar, headline) plus the desktop zoom and wide-screen rules. */
+
+/* Layers, bottom to top: photo (0), dark wash (1), giant word (2), hiker cut-out (3), fade into page (4), nav + copy (5) */
 .hero {
-  --g: clamp(96px, 17vw, 250px);            /* size of the giant word */
+  --g: clamp(96px, 17vw, 250px);
   position: relative;
   isolation: isolate;
   display: flex;
   flex-direction: column;
-  /* full screen: breaks out of the centred .page column to the edges of the viewport */
   width: 100vw;
   margin-inline: calc(50% - 50vw);
   min-height: 760px;
@@ -14,15 +14,16 @@
   min-height: max(760px, 100svh);
   overflow: hidden;
   border-radius: 0;
-  background: #22343d;                      /* dark base: never shows as a light edge line */
+  background: #22343d;
   color: #fff;
 }
 
+/* 1px overshoot hides sub-pixel gaps at fractional zoom. Same framing on both keeps the cut-out aligned. */
 .hero__photo,
 .hero__cut {
-  position: absolute; inset: -1px;                /* 1px overshoot hides sub-pixel gaps at fractional zoom */
+  position: absolute; inset: -1px;
   width: calc(100% + 2px); height: calc(100% + 2px);
-  object-fit: cover; object-position: 62% 35%;   /* same framing keeps the cut-out aligned */
+  object-fit: cover; object-position: 62% 35%;
 }
 .hero__photo { z-index: 0; }
 .hero__cut { z-index: 3; pointer-events: none; }
@@ -48,7 +49,6 @@
 }
 @keyframes word-rise { from { opacity: 0; margin-top: 80px; } to { opacity: .95; margin-top: 0; } }
 
-/* Top bar */
 .hero__nav { position: relative; z-index: 5; padding: 22px 40px; }
 
 .brand { display: block; line-height: 0; }
@@ -79,18 +79,14 @@
 [data-bs-theme="dark"] .theme-toggle .icon-sun { display: block; }
 [data-bs-theme="dark"] .theme-toggle .icon-moon { display: none; }
 
-/* ======================================================================
-   Headline + sub-headline: responsive per screen size
-   - 768px and up : left aligned, dark emphasis sits on the left behind the text
-   - below 768px  : centred, dark emphasis is centred behind the text
-   Sizes follow the hero's own width (cqi) and are tuned for each range below.
-   ====================================================================== */
+/* Headline sizes use cqi, so they follow the hero's width instead of the viewport.
+   768px and up is left aligned; below that it is centred. */
 .hero { container-type: inline-size; }
 
 .hero__copy {
-  --t: clamp(2rem, 3.7cqi, 2.875rem);        /* headline size */
-  --s: clamp(1.0625rem, 1.55cqi, 1.1875rem); /* sub-headline size */
-  --pt: calc(var(--g) * .9 + 34px);          /* space reserved for the giant word */
+  --t: clamp(2rem, 3.7cqi, 2.875rem);
+  --s: clamp(1.0625rem, 1.55cqi, 1.1875rem);
+  --pt: calc(var(--g) * .9 + 34px);
   position: relative; isolation: isolate; z-index: 5; flex: 1;
   display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start;
   max-width: 540px;
@@ -98,8 +94,7 @@
   text-align: left;
 }
 
-/* Emphasis behind the text: it is attached to the text block, so it follows the alignment.
-   Left aligned -> glow anchored on the left edge. Centred -> glow anchored in the middle. */
+/* Dark glow behind the text, anchored to the text's alignment */
 .hero__copy::before {
   content: ""; position: absolute; z-index: -1; pointer-events: none;
   top: calc(var(--pt) - 80px); left: 0; right: -80px;
@@ -113,7 +108,6 @@
   font: 800 var(--t) / 1.1 var(--font-body);
   letter-spacing: -.025em;
   text-wrap: balance;
-  /* shadow in em: grows and shrinks with the text */
   text-shadow: 0 .04em .5em rgba(0, 0, 0, .35), 0 .02em .06em rgba(0, 0, 0, .3);
 }
 .hero__title em { font-style: normal; color: var(--headline-green); }
@@ -124,7 +118,6 @@
   text-shadow: 0 1px .7em rgba(0, 0, 0, .4), 0 1px 2px rgba(0, 0, 0, .3);
 }
 
-/* Tablet portrait (768-991): still left aligned, wider column */
 @media (max-width: 991.98px) {
   .hero__word { left: 56%; }
   .hero__copy { --t: clamp(2rem, 3.9cqi, 2.375rem); --s: 1.0625rem; max-width: 70%; padding-inline: 32px; }
@@ -132,7 +125,6 @@
   .hero__title { max-width: 13em; }
 }
 
-/* Large phones / small tablets (576-767): centred */
 @media (max-width: 767.98px) {
   .hero__word { left: 50%; }
   .hero__nav { padding-inline: 24px; }
@@ -146,7 +138,6 @@
   }
   .hero__title { max-width: 13em; margin-inline: auto; }
   .hero__sub { margin-inline: auto; max-width: 28em; }
-  /* the left-hand dark wash is replaced by the centred one above; keep a light overall dim + the top fade */
   .hero::before {
     background:
       linear-gradient(180deg, rgba(14, 26, 34, .55), rgba(14, 26, 34, 0) 30%),
@@ -154,7 +145,6 @@
   }
 }
 
-/* Phones (< 576): centred, smaller type */
 @media (max-width: 575.98px) {
   .hero { --g: 27vw; min-height: 720px; min-height: max(720px, 100svh); }
   .hero__word { left: 50%; }
@@ -165,9 +155,8 @@
   .brand img { width: 120px; }
 }
 
-/* 768px and up: the text block is centred vertically between the giant word and the ticket,
-   so a tall window (or the inspector at 900px high) no longer leaves a big empty gap under the text.
-   The hero is also capped in height so it never becomes a tall empty photo. */
+/* The text is centred between the giant word and the ticket, and the hero height is capped
+   so tall windows don't leave an empty gap or a tall bare photo. */
 @media (min-width: 768px) {
   .hero { min-height: max(700px, min(100svh, 840px)); }
   .hero__copy { justify-content: center; }
@@ -177,68 +166,50 @@
   }
 }
 
-/* Ticket strip: pulled up a little more so the icons show fully at the bottom of the first screen.
-   (.page prefix = higher specificity than tickets.css, which is loaded later) */
+/* .page prefix beats tickets.css, which loads later */
 .page .ticket-nav-slot { margin-top: -92px; }
 
-/* Default scale, as if the browser were zoomed:
-     - laptops   (1200px to 1699px wide)  -> 100% (was 80%: +25%), hero fills the screen edge to edge
-     - big monitors (1700px and wider)    -> 125%  (see the block at the very end)
-     - phones and tablets (< 1200px)      -> normal 100%
-   Change --ui-zoom to fine-tune; 1 turns it off. */
+/* Desktop zoom: laptops (1200-1699px) 100%, big monitors (1700px+) 125%, QHD 175%, 4K 250%.
+   Set --ui-zoom to 1 to turn it off. Viewport units are multiplied by the zoom as well,
+   so the hero uses percentages instead of vw/vh here. */
 @media (min-width: 1200px) {
   html { --ui-zoom: 1; zoom: var(--ui-zoom); }
 
-  /* viewport units get multiplied by the zoom too, so the hero uses plain percentages here */
-  /* The hero stops growing at --hero-max, so zooming out (or a huge monitor) doesn't stretch it.
-     Beyond that width the page is centred and the backdrop below shows on both sides. */
   html { --hero-max: 1680px; --hero-h: max(760px, min(calc(100svh / var(--ui-zoom)), 840px)); }
   .page { position: relative; max-width: var(--hero-max); margin-inline: auto; }
   #main, .endcap { max-width: var(--page-max); margin-inline: auto; }
   .hero { width: auto; margin-inline: 0; min-height: var(--hero-h); }
 
-  /* Backdrop behind the hero, full screen width: dark like the top of the photo,
-     fading into the page colour exactly where the hero fades out. */
+  /* Full-width backdrop behind the capped hero, fading into the page colour where the hero fades out */
   .page::before {
     content: ""; position: absolute; z-index: -1; top: 0;
-    left: -9999px; right: -9999px;            /* bleeds past both screen edges at any zoom */
+    left: -9999px; right: -9999px;
     height: var(--hero-h);
     background: linear-gradient(180deg, #22343d 0%, #4a6670 55%, var(--page) 100%);
   }
 }
 
-/* Laptops: the hero fills the whole screen width, no side margin and no fade */
 @media (min-width: 1200px) and (max-width: 1699.98px) {
   html { --hero-max: 100%; }
 }
 
-/* Big desktop monitors: 125% */
 @media (min-width: 1700px) {
   html { --ui-zoom: 1.25; }
 }
 
-/* QHD / 2560px screens: 175%. 4K / 3200px and up: 250%.
-   The layout width stays about 1400-1550px, so the hero fills the screen edge to edge at 100% browser zoom. */
 @media (min-width: 2400px) { html { --ui-zoom: 1.75; } }
 @media (min-width: 3200px) { html { --ui-zoom: 2.5; } }
 
-/* Full-width coloured bands (The incentive, closing band).
-   They used calc(50% - 50vw), but viewport units get shrunk by the page scale on laptops (80%),
-   which left the bands narrower than the screen and cut the tickets at the sides.
-   A large fixed overflow works at every zoom; the page already clips horizontal overflow.
-   (.page prefix beats the selectors in offers.css / tickets.css, which load later) */
+/* Full-width bands. calc(50% - 50vw) breaks under zoom, so a large fixed overflow is used instead.
+   The page already clips horizontal overflow. */
 .page .incentive::before,
 .page .endcap::before { left: -9999px; right: -9999px; }
 
-/* Wide screens: the hero is capped at --hero-max and centred, so its photo used to end in a hard
-   rectangle (thin outline on the left and right). The side edges now fade into the backdrop.
-   The media queries match exactly the widths where the cap applies:
-     laptops   (100% scale): hero fills the screen, the cap is never reached (no fade)
-     bigger screens: the scale grows with the width, so the cap is reached only when the browser is zoomed out                                   */
-/* (width where layout > 1680px, for each scale band: 1.25 -> 2100px, 1.75 -> 2940px, 2.5 -> 4200px) */
+/* Where the hero hits its max width (only when zoomed out), its side edges fade out instead of ending in a hard line.
+   The ranges are the widths where layout exceeds 1680px for each zoom level. */
 @media (min-width: 2101px) and (max-width: 2399.98px), (min-width: 2941px) and (max-width: 3199.98px), (min-width: 4201px) {
   .hero {
-    background: transparent;            /* the dark base peeked out as a hairline on the edges under page scale */
+    background: transparent;
     -webkit-mask-image:
       linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%),
       linear-gradient(180deg, #000 0, #000 96%, transparent 100%);
@@ -246,35 +217,34 @@
     mask-image:
       linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%),
       linear-gradient(180deg, #000 0, #000 96%, transparent 100%);
-    mask-composite: intersect;          /* both fades apply: sides and bottom */
+    mask-composite: intersect;
   }
-  /* the left edge is now faded, so the headline + sub-headline move a bit to the right (40px -> 96px).
-     max-width grows by the same 56px, so the line breaks stay exactly the same. */
+  /* Shifted right because the left edge is now faded; max-width grows by the same 56px so lines break the same */
   .hero__copy { padding-left: 96px; max-width: 596px; }
 }
 
-/* Tablet and phone (up to 1024px): show only the green bar; tap to reveal the full logo.
-   The box of .brand never changes size, so nothing else on the page moves. */
+/* Tablet and phone: only the green bar of the logo shows; tapping it reveals the full logo (brand.js).
+   The box never changes size, so nothing else moves. */
 @media (max-width: 1024.98px) {
   .hero__nav .brand {
-    --w: 140px;                                   /* width of the full logo (tablet) */
+    --w: 140px;
     position: relative;
     box-sizing: content-box;
-    width: calc(var(--w) * .35); height: calc(var(--w) * .105);   /* size of the green bar */
-    padding: 12px; margin: -12px;                 /* bigger tap area, same position */
+    width: calc(var(--w) * .35); height: calc(var(--w) * .105);
+    padding: 12px; margin: -12px;
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
   }
   .hero__nav .brand img {
-    position: absolute; left: 12px; top: 12px;    /* sits on top of the box, outside the layout */
+    position: absolute; left: 12px; top: 12px;
     width: var(--w); height: auto;
-    clip-path: inset(0 64.5% 75.5% 0);            /* only the green bar */
+    clip-path: inset(0 64.5% 75.5% 0);
     transition: clip-path .35s ease;
   }
   .hero__nav .brand.is-open img { clip-path: inset(0 0 0 0); }
 }
 @media (max-width: 575.98px) {
-  .hero__nav .brand { --w: 120px; }               /* a little smaller on phones */
+  .hero__nav .brand { --w: 120px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .hero__nav .brand img { transition: none; }

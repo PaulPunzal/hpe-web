@@ -11,13 +11,13 @@
   }
 
   brand.addEventListener("click", function (e) {
-    if (!phone.matches) return;            // desktop: normal link to #top
+    if (!phone.matches) return;            
     e.preventDefault();
     set(!brand.classList.contains("is-open"));
   });
 
   document.addEventListener("click", function (e) {
-    if (phone.matches && !brand.contains(e.target)) set(false);   // tap outside closes it
+    if (phone.matches && !brand.contains(e.target)) set(false);  
   });
 
   phone.addEventListener("change", function () { set(false); });

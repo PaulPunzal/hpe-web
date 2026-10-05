@@ -1,9 +1,9 @@
-/* Base styles, small helpers and two button variants built on Bootstrap's .btn */
+/* Global base styles, shared helpers and the two custom buttons. */
 html { scroll-behavior: smooth; overflow-x: clip; }
 
 body {
   margin: 0;
-  padding: 0;                                   /* no outer margin: hero runs edge to edge */
+  padding: 0;
   overflow-x: clip;
   background: var(--page);
   color: var(--ink);
@@ -30,7 +30,6 @@ h1, h2, h3 { margin: 0; line-height: 1.15; }
 
 a:focus-visible, button:focus-visible { outline: 3px solid var(--hpe-green); outline-offset: 3px; }
 
-/* Buttons */
 .btn-lounge, .btn-gold {
   --bs-btn-border-width: 0;
   --bs-btn-hover-border-color: transparent;

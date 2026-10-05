@@ -1,6 +1,4 @@
-/* Navigation behaviour:
-   1. the compact ticket bar slides in once the big ticket strip has scrolled out of view
-   2. the link of the section you are currently reading is highlighted (in both tickets) */
+/* Navigation behaviour */
 (function () {
   const strip = document.getElementById("ticketNav");
   const mini = document.getElementById("ticketMini");

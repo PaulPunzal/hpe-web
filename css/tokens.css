@@ -1,4 +1,4 @@
-/* Design tokens: colours, type, layout and the perforation pattern. */
+/* Design tokens: colours, fonts, sizes and ticket perforation patterns, plus the dark theme overrides. */
 :root {
   --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-serif: "Lora", Georgia, serif;
@@ -26,7 +26,7 @@
   --radius: 16px;
   --notch: 14px;
 
-  /* Perforation: thin slits of uneven length, used as mask layers on every ticket. */
+  /* Slits of uneven length, used as mask layers to perforate the tickets */
   --slit-v: repeating-linear-gradient(180deg, #000 0 10px, #0000 10px 15px, #000 15px 21px, #0000 21px 27px, #000 27px 36px, #0000 36px 40px);
   --slit-h: repeating-linear-gradient(90deg, #000 0 10px, #0000 10px 15px, #000 15px 21px, #0000 21px 27px, #000 27px 36px, #0000 36px 40px);
 }

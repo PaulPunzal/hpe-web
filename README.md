@@ -64,7 +64,3 @@ Grid (`container`-style wrappers with `row` / `col-*` / `g-*`), `.btn` as base f
 
 Uses CSS `mask-composite`, `color-mix()` and `inset`, so use a current version of Chrome, Edge, Safari or Firefox.
 
-## AI assistance
-
-This project was written with the help of an AI assistant (Claude) from a Figma design and the briefing.
-If your exam or employer asks how AI was used, say so plainly and be ready to explain every part of the code.

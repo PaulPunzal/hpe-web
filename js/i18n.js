@@ -1,7 +1,5 @@
-/* EN / DE switch.
-   English is written directly in index.html. Elements with data-i18n="key" get the German text
-   below when DE is active; data-i18n-alt does the same for image alt text.
-   German wording follows the original briefing wherever it exists. */
+/* EN / DE switch. */
+
 (function () {
   const KEY = "hpe-lang";
 

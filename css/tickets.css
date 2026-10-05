@@ -1,10 +1,8 @@
-/* Ticket components. Every ticket is cut with a CSS mask:
-   - half-circle notches on the edges,
-   - thin slits (perforation) along its divider lines.
-   The mask layers are listed in --mask; mask-composite then subtracts slits (xor) and
-   intersects the notches. A drop-shadow lives on a wrapper because a mask would clip a box-shadow. */
+/* Ticket-shaped components: nav strip, compact scroll bar, register ticket, contact ticket and page end. */
 
-/* ---------- Navigation strip (under the hero) ---------- */
+/* Each ticket is cut with a CSS mask: radial gradients make the half-circle notches, --slit-v / --slit-h
+   punch the perforation, and mask-composite subtracts the slits and intersects the notches.
+   Shadows go on a wrapper because a mask would clip a box-shadow. */
 .ticket-nav-slot {
   position: relative; z-index: 50;
   width: min(1040px, 92%); margin: -62px auto 0;
@@ -66,7 +64,7 @@
   .ticket-icon { width: 40px; height: 40px; }
 }
 
-/* ---------- Compact bar: slides in once the big strip has scrolled away ---------- */
+/* Compact bar that slides in once the big strip has scrolled away */
 .ticket-mini {
   position: fixed; z-index: 60; top: 12px; left: 50%;
   width: min(900px, 94vw);
@@ -120,11 +118,7 @@
   .ticket-mini b { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 }
 
-/* ---------- Register ticket: main part + stub ----------
-   Desktop (992+)   : side by side, stub 280px
-   Tablet (768-991) : side by side, narrower stub
-   Below 768        : stacked, button fills the stub (max 320px)                                   */
-/* width is capped and centred with side gutters, like the ticket strip under the hero */
+/* Register ticket: main part + stub. Side by side from 768px, stacked below. */
 .ticket-reg { display: grid; grid-template-columns: minmax(0, 1fr) 280px; width: min(980px, calc(100% - 40px)); margin-inline: auto; color: #fff; }
 
 .ticket-reg__main {
@@ -202,17 +196,15 @@
   .barcode { width: 110px; height: 26px; }
 }
 
-/* ---------- Closing band (dead end of the page) + contact ticket ---------- */
+/* Closing band behind the contact ticket, full-bleed to the screen edges */
 .endcap { position: relative; isolation: isolate; margin-top: 56px; padding-top: 44px; }
 .endcap::before {
   content: ""; position: absolute; z-index: -1; top: 0; bottom: 0;
-  left: calc(50% - 50vw); right: calc(50% - 50vw);       /* full-bleed to the screen edges */
+  left: calc(50% - 50vw); right: calc(50% - 50vw);
   background: linear-gradient(180deg, var(--teal-800), var(--teal-900));
 }
 
-/* Contact ticket
-   Desktop (992+) : two columns, divider at 40%
-   Below 992      : stacked; dashed divider + side notches are drawn with pseudo-elements         */
+/* Contact ticket: two columns from 992px, stacked below with the divider drawn by pseudo-elements */
 .ticket-contact {
   --mask:
     var(--slit-v) 40% 16px / 2px calc(100% - 32px) no-repeat,
@@ -262,12 +254,12 @@
   .ticket-contact { position: relative; grid-template-columns: minmax(0, 1fr); -webkit-mask: none; mask: none; }
   .ticket-contact__main { padding: 28px 26px 26px; }
   .ticket-contact__note { position: relative; padding: 24px 26px 26px 46px; }
-  /* stacked layout: the divider is a row of dashes in the colour of the band behind the ticket */
+  /* Dashed divider in the colour of the band behind the ticket */
   .ticket-contact__note::before {
     content: ""; position: absolute; left: 16px; right: 16px; top: -1px; height: 2px;
     background: repeating-linear-gradient(90deg, #132f3d 0 10px, transparent 10px 15px, #132f3d 15px 21px, transparent 21px 27px, #132f3d 27px 36px, transparent 36px 40px);
   }
-  /* ...and the two half-circle notches at the ends of the divider */
+  /* Half-circle notches at the ends of the divider */
   .ticket-contact__note::after {
     content: ""; position: absolute; left: -1px; right: -1px; top: -13px; height: 26px; pointer-events: none;
     background:

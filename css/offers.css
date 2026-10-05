@@ -1,4 +1,4 @@
-/* ---------- Intro ---------- */
+/* Intro, "Members only" box, incentive band, voucher cards and prize section. */
 .intro { padding-top: 90px; }
 .intro__lead { margin: 0 0 1.75rem; font-size: 1.125rem; line-height: 1.65; }
 .intro .section-title { margin-bottom: 1.1rem; }
@@ -11,7 +11,6 @@
 .points__label { display: block; margin-bottom: .5rem; font-size: .75rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #5fe0bf; }
 .points p { margin: 0; font-size: 1rem; line-height: 1.65; }
 
-/* ---------- Incentive band (full width) ---------- */
 .incentive { position: relative; isolation: isolate; margin-top: 3rem; padding: 40px 0 44px; }
 .incentive::before {
   content: ""; position: absolute; z-index: -1; top: 0; bottom: 0;
@@ -20,9 +19,8 @@
 }
 .incentive__head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 1rem 2rem; margin-bottom: 1.25rem; }
 .incentive__title { font: 500 clamp(1.625rem, 3vw, 2rem) / 1.2 var(--font-serif); color: #fff; }
-.incentive .row { --bs-gutter-x: 1.25rem; --bs-gutter-y: 1.25rem; }   /* tighter gap between the cards */
+.incentive .row { --bs-gutter-x: 1.25rem; --bs-gutter-y: 1.25rem; }
 
-/* Promotion period: plain typography, a small label over the dates and one gold rule (no pill, no glass) */
 .period {
   display: flex; flex-direction: column; gap: .2rem;
   margin: 0; padding-left: 1rem; border-left: 2px solid var(--gold-light);
@@ -30,18 +28,17 @@
 }
 .period b { font: 500 1.25rem / 1.25 var(--font-serif); color: #fff; }
 
-/* ---------- Voucher card: picture panel + details, joined by a perforation (compact) ---------- */
+/* Voucher card: a picture panel (stage) and a text part (body), joined by a perforation */
 .voucher { --stage-h: 124px; --pad: 20px; display: flex; flex-direction: column; height: 100%; }
 
+/* The whole top piece tilts together on hover, so panel, price and product look printed on the card */
 .voucher__stage {
   position: relative; isolation: isolate; height: var(--stage-h);
   display: flex; justify-content: center; align-items: flex-end;
   padding: 0 20px 18px; color: var(--teal-800);
-  /* the whole top piece (panel, price, label, product) tilts together, so everything looks printed on the card */
   transform-origin: 100% 100%;
   transition: transform .5s cubic-bezier(.3, 1.5, .5, 1);
 }
-/* The tinted panel is a pseudo-element behind the content */
 .voucher__stage::after {
   --mask:
     var(--slit-h) 16px 100% / calc(100% - 32px) 2px no-repeat,
@@ -57,7 +54,6 @@
 .voucher--fuel .voucher__stage::after { background: radial-gradient(120% 95% at 50% 100%, #c6e0e6 0%, #e3f0f2 55%, #f3f9fa 100%); }
 .voucher--wish .voucher__stage::after { background: radial-gradient(120% 95% at 50% 100%, #f3dfae 0%, #faefd3 55%, #fffaf0 100%); }
 
-/* soft shadow on the "ground" under the product */
 .voucher__stage::before {
   content: ""; position: absolute; left: 50%; bottom: 14px; width: 55%; height: 10px;
   transform: translateX(-50%);
@@ -66,7 +62,6 @@
 
 .voucher__head { position: absolute; z-index: 1; top: 12px; left: 20px; right: 22px; display: flex; justify-content: space-between; align-items: flex-start; }
 
-/* Voucher type: small tracked label with a short rule, like the type line printed on a real voucher */
 .voucher__tag {
   display: inline-flex; align-items: center; gap: .6rem; margin-top: .4rem;
   font-size: .6875rem; font-weight: 700; letter-spacing: .09em; line-height: 1; text-transform: uppercase;
@@ -76,11 +71,10 @@
 .voucher--wish .voucher__tag { color: #855a08; }
 .voucher__amount { font: 500 2.1rem / 1 var(--font-serif); color: var(--teal-800); }
 
-/* static product image (the floating animation was removed to avoid lag) */
 .voucher__product {
   position: relative; z-index: 1;
   max-width: 62%; max-height: 72px; width: auto; height: auto; object-fit: contain;
-  mix-blend-mode: multiply;                    /* lets the white product photo backgrounds melt into the panel */
+  mix-blend-mode: multiply;   /* white photo backgrounds melt into the panel */
 }
 
 .voucher__body {
@@ -101,7 +95,6 @@
 .voucher__title { margin-bottom: .3rem; font: 500 1.1rem / 1.2 var(--font-serif); color: var(--ink); }
 .voucher__text { margin: 0 0 .65rem; font-size: .78rem; line-height: 1.45; color: var(--muted); }
 
-/* Conditions: one quiet line of text instead of two bordered chips */
 .voucher__meta {
   display: flex; flex-wrap: wrap; gap: 0 .6rem; margin: auto 0 .7rem; padding: 0;
   font-size: .72rem; font-weight: 500; line-height: 1.4; color: var(--label-green);
@@ -109,7 +102,6 @@
 .voucher__meta span + span::before { content: "·"; margin-right: .6rem; }
 .voucher .btn { align-self: flex-start; --bs-btn-padding-x: .9rem; --bs-btn-padding-y: .4rem; --bs-btn-font-size: .75rem; }
 
-/* hover: the top piece (with its image) and the bottom piece (with its text) tear apart along the perforation */
 .voucher:hover .voucher__stage { transform: translate(0, -2px) rotate(1.3deg); }
 .voucher:hover .voucher__body { transform: translateY(3px); }
 
@@ -122,12 +114,11 @@
   .period b { font-size: 1.125rem; }
 }
 
-/* ---------- Prize ---------- */
 .prize { padding: 72px 0 96px; }
 .prize__photo {
   display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--radius);
   -webkit-mask-image: linear-gradient(90deg, #000 55%, transparent);
-  mask-image: linear-gradient(90deg, #000 55%, transparent);          /* photo melts into the page */
+  mask-image: linear-gradient(90deg, #000 55%, transparent);
 }
 .prize .prize__amount { margin: .25rem 0 .75rem; font: 500 clamp(4rem, 9vw, 6.5rem) / 1 var(--font-serif); color: var(--gold); }
 .prize p { color: var(--muted); }
