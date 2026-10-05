@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <style>
+    .t { fill: #14303d; }
+    @media (prefers-color-scheme: dark) { .t { fill: #fff; } }
+  </style>
+  <rect x="98" y="119" width="316" height="72" fill="none" stroke="#01a982" stroke-width="36"/>
+  <text class="t" x="256" y="452" text-anchor="middle" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="196" font-weight="900">HPE</text>
+</svg>

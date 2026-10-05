@@ -14,9 +14,7 @@
   min-height: max(760px, 100svh);
   overflow: hidden;
   border-radius: 0;
-  /* same gradient as the backdrop behind the hero (.page::before): dark at the top, ending exactly in the page colour,
-     so no hairline can show along the bottom or side edges of the photo at any screen size or scale */
-  background: linear-gradient(180deg, #22343d 0%, #4a6670 55%, var(--page) 100%);
+  background: #22343d;                      /* dark base: never shows as a light edge line */
   color: #fff;
 }
 
@@ -53,11 +51,12 @@
 /* Top bar */
 .hero__nav { position: relative; z-index: 5; padding: 22px 40px; }
 
-.brand {
-  display: flex; flex-direction: column; padding-top: 4px;
-  border-top: 3px solid var(--hpe-green);
-  font-size: .6875rem; font-weight: 700; line-height: 1.15;
+.brand { display: block; line-height: 0; }
+.brand img {
+  display: block; width: 150px;
+  aspect-ratio: 49 / 20; object-fit: cover; height: auto;
 }
+.brand--foot img { width: 110px; }
 
 .lang-switch {
   display: flex; overflow: hidden;
@@ -163,7 +162,7 @@
   .hero__copy { --t: clamp(1.625rem, 7.6cqi, 2rem); --s: 1rem; --pt: calc(var(--g) * .9 + 72px); padding-inline: 22px; padding-bottom: 190px; }
   .lang-switch button { padding: .45rem .55rem; }
   .theme-toggle { width: 34px; height: 34px; }
-  .brand { font-size: .625rem; }
+  .brand img { width: 120px; }
 }
 
 /* 768px and up: the text block is centred vertically between the giant word and the ticket,
@@ -252,4 +251,31 @@
   /* the left edge is now faded, so the headline + sub-headline move a bit to the right (40px -> 96px).
      max-width grows by the same 56px, so the line breaks stay exactly the same. */
   .hero__copy { padding-left: 96px; max-width: 596px; }
+}
+
+/* Tablet and phone (up to 1024px): show only the green bar; tap to reveal the full logo.
+   The box of .brand never changes size, so nothing else on the page moves. */
+@media (max-width: 1024.98px) {
+  .hero__nav .brand {
+    --w: 140px;                                   /* width of the full logo (tablet) */
+    position: relative;
+    box-sizing: content-box;
+    width: calc(var(--w) * .35); height: calc(var(--w) * .105);   /* size of the green bar */
+    padding: 12px; margin: -12px;                 /* bigger tap area, same position */
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .hero__nav .brand img {
+    position: absolute; left: 12px; top: 12px;    /* sits on top of the box, outside the layout */
+    width: var(--w); height: auto;
+    clip-path: inset(0 64.5% 75.5% 0);            /* only the green bar */
+    transition: clip-path .35s ease;
+  }
+  .hero__nav .brand.is-open img { clip-path: inset(0 0 0 0); }
+}
+@media (max-width: 575.98px) {
+  .hero__nav .brand { --w: 120px; }               /* a little smaller on phones */
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__nav .brand img { transition: none; }
 }
