@@ -14,7 +14,9 @@
   min-height: max(760px, 100svh);
   overflow: hidden;
   border-radius: 0;
-  background: #22343d;                      /* dark base: never shows as a light edge line */
+  /* same gradient as the backdrop behind the hero (.page::before): dark at the top, ending exactly in the page colour,
+     so no hairline can show along the bottom or side edges of the photo at any screen size or scale */
+  background: linear-gradient(180deg, #22343d 0%, #4a6670 55%, var(--page) 100%);
   color: #fff;
 }
 
