@@ -71,6 +71,7 @@
   transform: translate(-50%, -160%); opacity: 0; visibility: hidden;
   filter: drop-shadow(0 10px 14px rgba(8, 24, 32, .45));
   transition: transform .55s cubic-bezier(.2, .8, .2, 1), opacity .35s, visibility 0s .55s;
+  will-change: transform;
 }
 .ticket-mini.is-visible { transform: translate(-50%, 0); opacity: 1; visibility: visible; transition-delay: 0s; }
 

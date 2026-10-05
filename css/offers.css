@@ -74,7 +74,6 @@
 .voucher__product {
   position: relative; z-index: 1;
   max-width: 62%; max-height: 72px; width: auto; height: auto; object-fit: contain;
-  mix-blend-mode: multiply;   /* white photo backgrounds melt into the panel */
 }
 
 .voucher__body {
@@ -102,8 +101,12 @@
 .voucher__meta span + span::before { content: "·"; margin-right: .6rem; }
 .voucher .btn { align-self: flex-start; --bs-btn-padding-x: .9rem; --bs-btn-padding-y: .4rem; --bs-btn-font-size: .75rem; }
 
-.voucher:hover .voucher__stage { transform: translate(0, -2px) rotate(1.3deg); }
-.voucher:hover .voucher__body { transform: translateY(3px); }
+.voucher__stage, .voucher__body { will-change: transform; }
+
+@media (hover: hover) {
+  .voucher:hover .voucher__stage { transform: translate(0, -2px) rotate(1.3deg); }
+  .voucher:hover .voucher__body { transform: translateY(3px); }
+}
 
 @media (max-width: 575.98px) {
   .voucher { --stage-h: 124px; --pad: 18px; }
