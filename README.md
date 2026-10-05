@@ -1,66 +1,76 @@
-# HPE Private Lounge – Q4 2024 landing page
+# HPE Private Lounge Q4 2024
 
-Responsive landing page built with plain HTML, CSS and JavaScript on top of Bootstrap 5.3 (CSS only).
-No build step and no page builder.
+Landing page for the HPE Private Lounge promotion (fuel and wish vouchers, plus a prize draw).
+Plain HTML, CSS and JavaScript. Bootstrap 5.3 is used for its CSS only. There is no build step.
 
-## How to run
+The page is available in English and German and has a light and a dark theme.
 
-1. Unzip the project.
-2. Double-click `index.html`. It opens in your browser and works offline, because Bootstrap and the fonts are included.
+## Running it
 
-Optional, with a local server (for example to test on your phone on the same Wi-Fi):
+You can search it with url: `https://hpe-web.netlify.app/`
+
+or
+
+Open `index.html` in a browser. Bootstrap and the fonts are included, so it works offline.
+
+To test on a phone on the same Wi-Fi, start a local server instead:
 
 ```bash
 cd hpe-private-lounge
-python -m http.server 8000      # then open http://localhost:8000
+python -m http.server 8000
 ```
 
-## Project structure
+Then open `http://localhost:8000`.
+
+## Structure
 
 ```
 hpe-private-lounge/
-├─ index.html              page markup (Bootstrap grid + semantic sections)
+├─ index.html
 ├─ css/
-│  ├─ fonts.css            @font-face for Inter, Lora, Anton (self-hosted)
-│  ├─ tokens.css           colours, type, layout values, perforation pattern, dark theme
-│  ├─ base.css             resets, helpers, button variants
-│  ├─ hero.css             hero layers, top bar, headline
-│  ├─ tickets.css          ticket nav strip, compact bar, register ticket, contact ticket, page end
-│  └─ offers.css           intro, incentive band, voucher cards, prize section
+│  ├─ fonts.css       font files (Inter, Lora, Anton)
+│  ├─ tokens.css      colours, sizes, perforation patterns, dark theme
+│  ├─ base.css        page defaults, shared helpers, buttons
+│  ├─ hero.css        hero, top bar, headline, zoom rules for big screens
+│  ├─ tickets.css     nav strip, compact bar, register and contact tickets
+│  └─ offers.css      intro, voucher cards, prize section
 ├─ js/
-│  ├─ theme.js             light / dark toggle (Bootstrap data-bs-theme)
-│  ├─ i18n.js              EN / DE switch (German text from the briefing)
-│  ├─ navigation.js        compact ticket bar + highlight of the current section
-│  └─ hero.js              scroll drift of the giant word
+│  ├─ theme.js        light / dark toggle
+│  ├─ i18n.js         EN / DE switch
+│  ├─ navigation.js   compact ticket bar and current-section highlight
+│  ├─ hero.js         slow scroll drift of the big word
+│  └─ brand.js        tap to open the full logo on small screens
 ├─ assets/
-│  ├─ images/              hero photo, hiker cut-out (PNG), prize photo, 4 product images
-│  └─ fonts/               woff2 files
-└─ vendor/bootstrap/       Bootstrap 5.3.3 CSS + licence
+│  ├─ images/
+│  └─ fonts/
+└─ vendor/bootstrap/
 ```
 
-## Where Bootstrap is used
+## Bootstrap
 
-Grid (`container`-style wrappers with `row` / `col-*` / `g-*`), `.btn` as base for the buttons, flex utilities
-(`d-flex`, `align-items-center`, `gap-2`) and `data-bs-theme` for dark mode. Bootstrap's JavaScript is not needed.
+Only a small part is used: the grid (`row`, `col-*`, `g-*`), `.btn` as a base for the custom buttons, a few flex
+utilities, and the `data-bs-theme` attribute for dark mode. Bootstrap's JavaScript is not loaded.
 
-## How the main effects work
+## Notes on how it works
 
-- **Hero:** photo, giant word and a transparent cut-out of the hiker are stacked with `z-index`, so the word
-  appears *behind* the hiker. Photo and cut-out use the same `object-fit` / `object-position` to stay aligned.
-- **Tickets:** notches and perforation slits are CSS masks (`--mask` custom property + `mask-composite`),
-  defined once in `tokens.css` (`--slit-v`, `--slit-h`) and reused by every ticket.
-- **Voucher cards:** two pieces joined by a perforation. On hover only the coloured panel tilts, so the product
-  image stays sharp.
-- **Full-width bands:** `left/right: calc(50% - 50vw)` on a pseudo-element.
+- **Hero:** the photo, the big word and a transparent cut-out of the hiker are stacked with `z-index`, which puts
+  the word behind the hiker. The photo and the cut-out need the same `object-fit` and `object-position`, or they
+  drift apart.
+- **Tickets:** the notches and perforation are CSS masks, built from the `--slit-v` and `--slit-h` patterns in
+  `tokens.css`.
+- **Voucher cards:** each card is a top and a bottom piece joined by a perforation. On hover the top piece tilts
+  and the bottom one moves down slightly.
+- **Big screens:** from 1200px up, `hero.css` scales the page with `zoom` so it looks the same on large monitors.
+  Set `--ui-zoom` to `1` to turn this off.
+- **Full-width bands:** the incentive and closing bands use a pseudo-element that stretches past both screen edges.
 
-## Before you hand it in
+## Still to check
 
-- Replace the compressed stock-photo previews in `assets/images` with the licensed full-resolution files.
-- The logo is a text lock-up; swap in the official HPE logo file.
-- The registration link comes from the briefing and contains `hpe-2021-q4`. Please confirm it is the right one for Q4 2024.
-- The four product-image links open ALSO shop searches taken from the briefing.
+- Replace the preview images in `assets/images` with the full-resolution licensed files.
+- Swap in the official HPE logo file.
+- The register link contains `hpe-2021-q4`. Confirm it is the right one for Q4 2024.
+- The product buttons open ALSO shop searches taken from the briefing.
 
 ## Browser support
 
-Uses CSS `mask-composite`, `color-mix()` and `inset`, so use a current version of Chrome, Edge, Safari or Firefox.
-
+Needs a current Chrome, Edge, Safari or Firefox (it uses `mask-composite`, `color-mix()` and `zoom`).
