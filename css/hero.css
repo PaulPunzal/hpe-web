@@ -181,12 +181,12 @@
 .page .ticket-nav-slot { margin-top: -92px; }
 
 /* Default scale, as if the browser were zoomed:
-     - laptops   (1200px to 1699px wide)  -> 80%
+     - laptops   (1200px to 1699px wide)  -> 100% (was 80%: +25%), hero fills the screen edge to edge
      - big monitors (1700px and wider)    -> 125%  (see the block at the very end)
      - phones and tablets (< 1200px)      -> normal 100%
    Change --ui-zoom to fine-tune; 1 turns it off. */
 @media (min-width: 1200px) {
-  html { --ui-zoom: .8; zoom: var(--ui-zoom); }
+  html { --ui-zoom: 1; zoom: var(--ui-zoom); }
 
   /* viewport units get multiplied by the zoom too, so the hero uses plain percentages here */
   /* The hero stops growing at --hero-max, so zooming out (or a huge monitor) doesn't stretch it.
@@ -206,10 +206,20 @@
   }
 }
 
+/* Laptops: the hero fills the whole screen width, no side margin and no fade */
+@media (min-width: 1200px) and (max-width: 1699.98px) {
+  html { --hero-max: 100%; }
+}
+
 /* Big desktop monitors: 125% */
 @media (min-width: 1700px) {
   html { --ui-zoom: 1.25; }
 }
+
+/* QHD / 2560px screens: 175%. 4K / 3200px and up: 250%.
+   The layout width stays about 1400-1550px, so the hero fills the screen edge to edge at 100% browser zoom. */
+@media (min-width: 2400px) { html { --ui-zoom: 1.75; } }
+@media (min-width: 3200px) { html { --ui-zoom: 2.5; } }
 
 /* Full-width coloured bands (The incentive, closing band).
    They used calc(50% - 50vw), but viewport units get shrunk by the page scale on laptops (80%),
@@ -222,9 +232,10 @@
 /* Wide screens: the hero is capped at --hero-max and centred, so its photo used to end in a hard
    rectangle (thin outline on the left and right). The side edges now fade into the backdrop.
    The media queries match exactly the widths where the cap applies:
-     laptops   (80% scale):  cap reached above 1680 x .8   = 1344px
-     monitors (125% scale):  cap reached above 1680 x 1.25 = 2100px                                   */
-@media (min-width: 1345px) and (max-width: 1699.98px), (min-width: 2101px) {
+     laptops   (100% scale): hero fills the screen, the cap is never reached (no fade)
+     bigger screens: the scale grows with the width, so the cap is reached only when the browser is zoomed out                                   */
+/* (width where layout > 1680px, for each scale band: 1.25 -> 2100px, 1.75 -> 2940px, 2.5 -> 4200px) */
+@media (min-width: 2101px) and (max-width: 2399.98px), (min-width: 2941px) and (max-width: 3199.98px), (min-width: 4201px) {
   .hero {
     background: transparent;            /* the dark base peeked out as a hairline on the edges under page scale */
     -webkit-mask-image:
