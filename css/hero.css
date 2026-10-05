@@ -186,7 +186,7 @@
      - phones and tablets (< 1200px)      -> normal 100%
    Change --ui-zoom to fine-tune; 1 turns it off. */
 @media (min-width: 1200px) {
-  html { --ui-zoom: 1.25; zoom: var(--ui-zoom); }
+  html { --ui-zoom: .8; zoom: var(--ui-zoom); }
 
   /* viewport units get multiplied by the zoom too, so the hero uses plain percentages here */
   /* The hero stops growing at --hero-max, so zooming out (or a huge monitor) doesn't stretch it.
@@ -218,3 +218,25 @@
    (.page prefix beats the selectors in offers.css / tickets.css, which load later) */
 .page .incentive::before,
 .page .endcap::before { left: -9999px; right: -9999px; }
+
+/* Wide screens: the hero is capped at --hero-max and centred, so its photo used to end in a hard
+   rectangle (thin outline on the left and right). The side edges now fade into the backdrop.
+   The media queries match exactly the widths where the cap applies:
+     laptops   (80% scale):  cap reached above 1680 x .8   = 1344px
+     monitors (125% scale):  cap reached above 1680 x 1.25 = 2100px                                   */
+@media (min-width: 1345px) and (max-width: 1699.98px), (min-width: 2101px) {
+  .hero {
+    background: transparent;            /* the dark base peeked out as a hairline on the edges under page scale */
+    -webkit-mask-image:
+      linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%),
+      linear-gradient(180deg, #000 0, #000 96%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+      linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%),
+      linear-gradient(180deg, #000 0, #000 96%, transparent 100%);
+    mask-composite: intersect;          /* both fades apply: sides and bottom */
+  }
+  /* the left edge is now faded, so the headline + sub-headline move a bit to the right (40px -> 96px).
+     max-width grows by the same 56px, so the line breaks stay exactly the same. */
+  .hero__copy { padding-left: 96px; max-width: 596px; }
+}
